@@ -29,3 +29,16 @@ jobs:
 
       - name: Run tests
         run: ./gradlew test
+
+      - name: install cowsay
+        run: sudo apt-get install cowsay
+
+      - name: Build with Gradle and publish build scan
+        run: |
+          ./gradlew build --scan
+          echo "## Reza Title من رضا هستم" >> $GITHUB_STEP_SUMMARY
+          echo "JDK Version:" >> $GITHUB_STEP_SUMMARY
+          java -version >> $GITHUB_STEP_SUMMARY
+          cowsay "سلام رضا" >> $GITHUB_STEP_SUMMARY
+      - name: Run cowsay
+        run: cowsay "Hello World"
