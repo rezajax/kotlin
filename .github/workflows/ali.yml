@@ -11,11 +11,3 @@ jobs:
             sudo apt-get install cowsay
             cowsay "Hello World"
 
-
-#  rezaPublishOnGhPages:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout sources
-#        uses: actions/checkout@v4
-#
-#      - name: "Publishing to GitHub Pages"
