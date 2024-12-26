@@ -1,24 +1,21 @@
-name: CI Workflow
+name : AliBuild
 
 on:
   push:
+
   workflow_dispatch:
+
 
 jobs:
   aliBuild:
     runs-on: ubuntu-latest
     steps:
-      - name: Greet Ali
-        run: echo "salam ali"
+      - name: echo "salam ali"
+      - name: echo "salam reza"
 
-      - name: Greet Reza
-        run: echo "salam reza"
+      - run: sudo apt update && sudo apt install cowsay
+      - run: cowsay "Hello World"
 
-      - name: Install and Run Cowsay
-        run: |
-          sudo apt update
-          sudo apt install -y cowsay
-          cowsay "Hello World"
 
   rezaPublishOnGhPages:
     runs-on: ubuntu-latest
@@ -26,19 +23,4 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build site
-        run: npm run build
-
-      - name: Publish to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+      - name: "Publishing to GitHub Pages"
