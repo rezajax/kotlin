@@ -10,8 +10,6 @@ jobs:
   aliBuild:
     runs-on: ubuntu-latest
     steps:
-      - name: echo "salam ali"
-      - name: echo "salam reza"
 
       - run: sudo apt update && sudo apt install cowsay
       - run: cowsay "Hello World"
