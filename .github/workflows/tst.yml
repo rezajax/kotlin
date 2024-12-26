@@ -1,0 +1,35 @@
+name: tst
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  jobsRezaExplore:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 Triggered by a ${{ github.event_name }} event."
+      - run: echo "🔎 Running on branch ${{ github.ref }} in repository ${{ github.repository }}."
+      - uses: actions/checkout@v4
+      - run: echo "✅ Repository cloned successfully!"
+
+  jobsRezaBuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v4
+      - name: Setup Gradle Environment
+        uses: gradle/actions/setup-gradle@v3.5.0
+      - name: Build Project
+        run: ./gradlew build
+
+  jobsRezaTest:
+    runs-on: ubuntu-latest
+    needs: jobsRezaBuild # وابسته به jobsRezaBuild
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gradle/actions/setup-gradle@v3.5.0
+      - run: ./gradlew test
+
+  jobsRezaDeploy:
+    runs-on: ubuntu-latest
+    needs: [jobsRezaBuild, jobsRezaTest] # وابسته به jobsRezaBuild و jobsRezaTest
+    steps:
+      - run: echo "🚀 Deployment in progress!"
