@@ -1,0 +1,24 @@
+on:
+  push:
+
+  workflow_dispatch:
+
+
+jobs:
+  aliBuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo "salam ali"
+      - name: echo "salam reza"
+
+      - run: sudo apt update && sudo apt install cowsay
+      - run: cowsay "Hello World"
+
+
+  rezaPublishOnGhPages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: "Publishing to GitHub Pages"
