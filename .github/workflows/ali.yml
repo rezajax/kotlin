@@ -11,8 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install and Run Cowsay
-      - run: sudo apt update && sudo apt install cowsay
-      - run: cowsay "Hello World"
+      - run: |
+            sudo apt-get install cowsay
+            cowsay "Hello World"
 
 
 #  rezaPublishOnGhPages:
