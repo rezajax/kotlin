@@ -16,3 +16,21 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+    RezaBuild-فارسی:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout sources
+            uses: actions/checkout@v4
+        - name: Setup Gradle
+            uses: gradle/actions/setup-gradle@v3.5.0
+        - name: Print JDK version
+            run: |
+            echo "JDK Version:"
+            java -version
+        - name: Build with Gradle and publish build scan
+            run: |
+            ./gradlew build --scan
+            echo "## Reza Title" >> $GITHUB_STEP_SUMMARY
+            echo "JDK Version:" >> $GITHUB_STEP_SUMMARY
+            java -version >> $GITHUB_STEP_SUMMARY
