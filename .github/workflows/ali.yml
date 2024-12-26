@@ -10,6 +10,6 @@ jobs:
   aliBuild:
     runs-on: ubuntu-latest
     steps:
-      - name: Install and Run Cowsay
-        run: sudo apt update && sudo apt install cowsay
+#      - name: Install and Run Cowsay
+      - run: sudo apt update && sudo apt install cowsay
       - run: cowsay "Hello World"
