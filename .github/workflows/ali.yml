@@ -1,17 +1,12 @@
-name : AliBuild
+name: AliBuild
 
-on:
-  push:
-    branches:
-      - master
-  workflow_dispatch:
-
+on: [ push, pull_request, workflow_dispatch ]
 
 jobs:
   aliBuild:
     runs-on: ubuntu-latest
     steps:
       - name: Install and Run Cowsay
-        run: |
-          sudo apt-get install cowsay
-          cowsay "Hello World"
+      - run: sudo apt install cowsay
+      - run: cowsay "Hello World"
+
