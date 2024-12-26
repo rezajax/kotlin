@@ -3,6 +3,8 @@ plugins {
     application
 }
 
+
+
 application {
     mainClass.set("ir.rezajax.MainKt")
 }

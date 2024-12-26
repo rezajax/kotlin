@@ -40,5 +40,9 @@ jobs:
           echo "JDK Version:" >> $GITHUB_STEP_SUMMARY
           java -version >> $GITHUB_STEP_SUMMARY
           cowsay "سلام رضا" >> $GITHUB_STEP_SUMMARY
+          
+          
+          
+
       - name: Run cowsay
         run: cowsay "Hello World"
