@@ -1,6 +1,11 @@
 package ir.rezajax
 
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonObject
 import java.io.FileInputStream
 import java.net.URI
 import java.net.http.HttpClient
@@ -23,6 +28,18 @@ fun main() {
     val apiKey2 = Config.TMDB_API
     println("TMDB API Key: $apiKey2")
 
+//    parseMovies("Parse: $fetch")
+
+
+    val client = HttpClient.newHttpClient()
+    val request = HttpRequest.newBuilder(URI(urlCreator(550))).build()
+
+    val response = client.send(request, HttpResponse.BodyHandlers.ofString())
+
+
+    val json = Json { ignoreUnknownKeys = true } // برای نادیده گرفتن مقادیر اضافی
+    val movie: Movies = json.decodeFromString(response.body())
+
 }
 
 object Config {
@@ -37,6 +54,21 @@ fun getApiKey(): String {
     val inputStream = FileInputStream("local.properties")
     props.load(inputStream)
     return props.getProperty("TMDB_API") ?: throw IllegalStateException("API Key not found")
+}
+
+@Serializable
+data class Movies (
+    val title: String,
+    val id: Int,
+    @SerialName("overview") val Description: String,
+)
+
+
+fun parseMovies(input: String): Movies {
+    val json = Json { ignoreUnknownKeys = true }
+    // Ensure input is clean JSON
+    val cleanInput = input.trim().removePrefix("Parse:").trim()
+    return json.decodeFromString(cleanInput)
 }
 
 
