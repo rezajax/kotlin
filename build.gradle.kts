@@ -10,6 +10,18 @@ repositories {
     mavenCentral()
 }
 
+tasks.jar {
+    manifest {
+        attributes(
+            "Main-Class" to "ir.rezajax.MainKt"
+        )
+    }
+
+
+}
+
+
+
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
     testImplementation(kotlin("test"))
