@@ -39,6 +39,7 @@ fun main() {
 
     val json = Json { ignoreUnknownKeys = true } // برای نادیده گرفتن مقادیر اضافی
     val movie: Movies = json.decodeFromString(response.body())
+    println(movie)
 
 }
 
