@@ -35,6 +35,7 @@ tasks {
 }
 
 dependencies {
+    implementation(project(":module"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
     testImplementation(kotlin("test"))

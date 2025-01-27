@@ -1,5 +1,7 @@
 package ir.rezajax
 
+import ir.rezajax.module.testFunInModule
+
 
 fun main() {
     val url = urlCreator(503)
@@ -7,4 +9,6 @@ fun main() {
     val movies = parseMovies(url)
     println(movies)
 
+ir.rezajax.module.main()
+    testFunInModule()
 }
