@@ -1,6 +1,9 @@
+
+
 plugins {
     kotlin("jvm") version "2.1.0"
     kotlin("plugin.serialization") version "2.1.0"
+    id("com.gradleup.shadow") version "9.0.0-beta6"
 }
 
 group = "ir.rezajax"
@@ -17,12 +20,22 @@ tasks.jar {
         )
     }
 
-
 }
 
-
+tasks {
+    shadowJar {
+        // Specify the main class to run
+        manifest {
+            attributes["Main-Class"] = "ir.rezajax.MainKt" // Replace with your main class path
+        }
+        archiveBaseName.set("my-shadow-jar") // Name of the JAR file
+        archiveVersion.set("1.0.0") // Set the version if necessary
+        mergeServiceFiles() // Optional: Merges service files from dependencies
+    }
+}
 
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
     testImplementation(kotlin("test"))
 }
