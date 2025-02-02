@@ -35,6 +35,9 @@ tasks {
 }
 
 dependencies {
+
+    implementation("io.netty:netty-all:4.1.115.Final")
+
     implementation(project(":module"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
